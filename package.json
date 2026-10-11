@@ -23,7 +23,7 @@
     "@dnd-kit/utilities": "^3.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@tailwindcss/postcss": "^4.0.0",
