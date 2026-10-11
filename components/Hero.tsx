@@ -34,8 +34,8 @@ export default function Hero({ s }: { s: Settings }) {
       <div className="sticky top-0 flex h-svh w-full flex-col items-center justify-center overflow-hidden">
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_55%,rgba(61,99,255,.28),transparent_70%)]" />
 
-        <div className="hero-copy absolute inset-x-0 top-[13svh] px-6 text-center">
-          <h1 className="font-display text-[clamp(2.4rem,7.5vw,6rem)] font-semibold leading-[1.02] tracking-tight">{s.tagline}</h1>
+        <div className="hero-copy absolute inset-x-0 top-[13svh] px-4 text-center sm:px-6">
+          <h1 className="font-display text-[clamp(1.75rem,7.5vw,6rem)] font-semibold leading-[1.02] tracking-tight">{s.tagline}</h1>
           <p className="mx-auto mt-4 max-w-md text-sm text-white/60 sm:text-base">Role para abrir a caixa.</p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Hero({ s }: { s: Settings }) {
         </div>
 
         <div className="hero-end pointer-events-none absolute inset-x-0 bottom-[7svh] px-6 text-center opacity-0">
-          <p className="font-display text-xl font-medium sm:text-2xl">Jogos em mídia física, direto na loja.</p>
+          <p className="font-display text-base font-medium sm:text-2xl">Jogos em mídia física, direto na loja.</p>
         </div>
       </div>
     </section>

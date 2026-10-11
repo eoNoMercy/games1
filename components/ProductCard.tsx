@@ -3,11 +3,11 @@ import type { Product } from "@/lib/types";
 import type { CardVariant } from "@/lib/utils";
 import { whatsappLink } from "@/lib/links";
 
-// Jogos: capa em pé, altura fixa. Consoles e acessórios: a altura acompanha o formato da foto (sem bordas, sem cortes).
+// Celular: cards menores, para caber mais coisas na tela (como no computador). Jogos: capa em pé. Consoles e acessórios: seguem o formato da foto.
 const look: Record<CardVariant, { box: string; sizes: string }> = {
-  game: { box: "w-[78vw] max-w-[360px] sm:w-[340px]", sizes: "(max-width:640px) 78vw, 340px" },
-  console: { box: "w-[84vw] max-w-[400px] sm:w-[400px]", sizes: "(max-width:640px) 84vw, 400px" },
-  accessory: { box: "w-[64vw] max-w-[300px] sm:w-[300px]", sizes: "(max-width:640px) 64vw, 300px" },
+  game: { box: "w-[42vw] max-w-[190px] sm:w-[340px] sm:max-w-none", sizes: "(max-width:640px) 42vw, 340px" },
+  console: { box: "w-[62vw] max-w-[280px] sm:w-[400px] sm:max-w-none", sizes: "(max-width:640px) 62vw, 400px" },
+  accessory: { box: "w-[40vw] max-w-[180px] sm:w-[300px] sm:max-w-none", sizes: "(max-width:640px) 40vw, 300px" },
 };
 
 function Photo({ p, variant }: { p: Product; variant: CardVariant }) {
@@ -25,15 +25,15 @@ function Photo({ p, variant }: { p: Product; variant: CardVariant }) {
 
 export default function ProductCard({ p, number, variant = "game" }: { p: Product; number: string; variant?: CardVariant }) {
   return (
-    <article className={`flex shrink-0 snap-start flex-col overflow-hidden rounded-4xl bg-white ${look[variant].box}`}>
+    <article className={`flex shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white sm:rounded-4xl ${look[variant].box}`}>
       <Photo p={p} variant={variant} />
-      <div className="flex flex-1 flex-col gap-2 p-6">
-        {p.platforms.length > 0 && <p className="text-sm text-signal">{p.platforms.join(" · ")}</p>}
-        <h3 className="font-display text-xl font-semibold">{p.name}</h3>
-        {p.description && <p className="text-sm text-ink/60">{p.description}</p>}
-        {p.price && <p className="mt-1 font-display text-lg font-semibold">{p.price}</p>}
+      <div className="flex flex-1 flex-col gap-1 p-3 sm:gap-2 sm:p-6">
+        {p.platforms.length > 0 && <p className="truncate text-[11px] text-signal sm:whitespace-normal sm:text-sm">{p.platforms.join(" · ")}</p>}
+        <h3 className="line-clamp-2 font-display text-sm font-semibold leading-snug sm:line-clamp-none sm:text-xl">{p.name}</h3>
+        {p.description && <p className="line-clamp-2 text-xs text-ink/60 sm:line-clamp-none sm:text-sm">{p.description}</p>}
+        {p.price && <p className="font-display text-sm font-semibold sm:mt-1 sm:text-lg">{p.price}</p>}
         <a href={whatsappLink(number, `Olá! Tenho interesse em ${p.name}${p.platforms.length ? ` (${p.platforms.join(", ")})` : ""}.`)} target="_blank" rel="noopener noreferrer"
-           className="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-5 text-sm font-semibold text-white transition-transform active:scale-95">
+           className="mt-2 inline-flex min-h-9 items-center justify-center rounded-full bg-ink px-3 text-xs font-semibold text-white transition-transform active:scale-95 sm:mt-4 sm:min-h-12 sm:px-5 sm:text-sm">
           Pedir no WhatsApp
         </a>
       </div>

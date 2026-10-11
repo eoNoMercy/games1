@@ -1,7 +1,7 @@
 "use client";
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type PointerEvent, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent, type MouseEvent } from "react";
 
-// Comportamento do carrossel: sabe se está no começo/fim (para esmaecer as bordas e habilitar as setas),
+// Comportamento do carrossel: sabe se está no começo/fim (para habilitar as setas),
 // volta ao início quando o filtro muda, e permite arrastar com o mouse sem disparar cliques por engano.
 export function useRail(resetKey: string) {
   const ref = useRef<HTMLDivElement>(null);
@@ -54,7 +54,6 @@ export function useRail(resetKey: string) {
     onClickCapture: (e: MouseEvent) => { if (drag.current.moved) { e.preventDefault(); e.stopPropagation(); } },
   };
 
-  const style = { "--fl": edge.start ? "0px" : "var(--fade)", "--fr": edge.end ? "0px" : "var(--fade)" } as CSSProperties;
   const scroll = (dir: number) => { const el = ref.current; if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" }); };
-  return { ref, edge, handlers, style, scroll };
+  return { ref, edge, handlers, scroll };
 }
